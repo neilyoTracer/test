@@ -1,0 +1,16 @@
+<div id="search-component" style="text-align: left">
+    <h4>Hero Search</h4>
+
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)">
+    <ul class="search-result">
+        <!-- $ 是一个命名惯例，用来表明 heroes$ 是一个 Observable，而不是数组。 -->
+        <li *ngFor="let hero of heroes$ | async">
+            <a routerLink="/detail/{{hero.id}}">
+                {{hero.name}}
+            </a>
+        </li>
+    </ul>
+
+    <app-change-test [changeTest]="searchBox.value"></app-change-test>
+
+</div>

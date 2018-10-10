@@ -1,0 +1,17 @@
+<div>
+  ngForm:
+  <input #box type="text" (keyup)="0"/>
+  <p>{{box.value}}</p>
+</div>
+
+<!-- 除非你绑定一个事件，否则这将完全无法工作。 -->
+
+<!-- 只有在应用做了些异步事件（如击键），Angular 才更新绑定
+  （并最终影响到屏幕）。 本例代码将 keyup 事件绑定到了数字 0，
+  这可能是最短的模板语句了。 虽然这个语句不做什么，但它满足 Angular 的要求，
+  所以 Angular 将更新屏幕。 -->
+
+<div>
+  <input type="text" #box2 (keyup.enter)="onKey(box2.value)" (blur)="update(box2.value)">
+  <p>{{values}}</p>
+</div>
