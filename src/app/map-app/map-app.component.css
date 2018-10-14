@@ -1,0 +1,6 @@
+.flex-wk {
+	display: flex;
+	height: calc(100vh - 58px);
+	flex-direction: row;
+	left: 0;
+}

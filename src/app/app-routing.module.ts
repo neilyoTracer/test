@@ -10,7 +10,6 @@ import { HeroFormComponent } from "./ngForm/hero-form/hero-form.component";
 import { ObservableTestComponent } from "./observable/observable-test/observable-test.component";
 import { HeroParentComponent } from "./Interaction/hero-parent/hero-parent.component";
 import { ApiExampleComponent } from "./webphone/api-example/api-example.component";
-import { MapAppComponent } from "./map-app/map-app/map-app.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "dashboard", pathMatch: "full" },
@@ -24,11 +23,14 @@ const routes: Routes = [
   { path: "observable", component: ObservableTestComponent },
   { path: "interaction", component: HeroParentComponent },
   { path: "webphone", component: ApiExampleComponent },
-  { path: "mapapp", component: MapAppComponent }
+	{ 
+		path: "map-app", 
+		loadChildren:'./map-app/map-app.module#MapAppModule'
+	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

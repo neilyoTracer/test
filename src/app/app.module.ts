@@ -48,8 +48,6 @@ import { VoteTakerComponent } from './interaction/vote-taker/vote-taker.componen
 import { CountdownParentAgComponent } from "./Interaction/countdown-parent/countdown-parent.component";
 import { CountdownTimerAgComponent } from "./Interaction/countdown-timer/countdown-timer.component";
 import { ApiExampleComponent } from './webphone/api-example/api-example.component';
-import { MapBaiduComponent } from './map-app/map-baidu/map-baidu.component';
-import { MapAppComponent } from './map-app/map-app/map-app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
@@ -99,9 +97,7 @@ registerLocaleData(zh);
 		VoteTakerComponent,
 		CountdownParentAgComponent,
 		CountdownTimerAgComponent,
-		ApiExampleComponent,
-		MapBaiduComponent,
-		MapAppComponent
+		ApiExampleComponent
   ],
   imports: [
     BrowserModule,
