@@ -13,6 +13,7 @@ declare const BMap:any;
 export class MapBaiduComponent implements OnInit,OnDestroy {
 
 	@Input() options:any = {};
+	@Input() layoutTime:number;
 	@Output() ready = new EventEmitter<any>();
 
 	private map:any = null;
@@ -23,7 +24,7 @@ export class MapBaiduComponent implements OnInit,OnDestroy {
 		private loader:LoaderService,
 		private zone:NgZone
 	) { 
-		this._initMap()
+		
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
@@ -32,7 +33,12 @@ export class MapBaiduComponent implements OnInit,OnDestroy {
 		if('options' in changes) { this._updateOptions(); }
 	}
 
-	ngOnInit(): void { }
+	ngOnInit(): void { 
+		setTimeout(() => { 
+
+			this._initMap();
+		},this.layoutTime);
+	}
 
 	private _initMap() { 
 		if(this.map) {return;}
