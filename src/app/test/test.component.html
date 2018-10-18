@@ -1,0 +1,33 @@
+<h3>
+	test works!
+</h3>
+
+<nz-tabset (nzSelectChange)="tabChanges($event)">
+	<nz-tab nzTitle="你">
+		<div *ngIf="tabIndex === 0">
+			<input type="text">
+		</div>
+	</nz-tab>
+	<nz-tab nzTitle="我">
+		<div *ngIf="tabIndex === 1">
+			<input type="text">
+		</div>
+	</nz-tab>
+	<nz-tab nzTitle="他">
+		<div *ngIf="tabIndex === 2">
+			<input type="text">
+		</div>
+	</nz-tab>
+</nz-tabset>
+
+<!-- <div class="box">
+	<div *ngIf="tabIndex === 0">
+		<input type="text">
+	</div>
+	<div *ngIf="tabIndex === 1">
+		Content of Tab Pane 2
+	</div>
+	<div *ngIf="tabIndex === 2">
+		Content of Tab Pane 3
+	</div>
+</div> -->
