@@ -26,10 +26,12 @@ const routes: Routes = [
 	{ 
 		path: "map-app", 
 		loadChildren:'./map-app/map-app.module#MapAppModule'
-	},
-	{ 
+	},{ 
 		path: "test", 
 		loadChildren:'./test/test.module#TestModule'
+	},{
+		path:'watch',
+		loadChildren:'./watch/watch.module#WatchModule'
 	}
 ];
 

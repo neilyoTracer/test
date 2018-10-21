@@ -1,0 +1,17 @@
+<h3>子组件</h3>
+
+<div *ngIf="dataRefChanged">
+来自父组件的数据引用变化了...{{count}}次
+</div>
+<div *ngIf="dataProChanged">
+来自父组件的数据属性变化了
+</div>
+
+<div>
+	姓: <span>{{dataFromParent.firstName}}</span>
+	名: <span>{{dataFromParent.lastName}}</span>
+	分数: <span>{{dataFromParent.score}}</span>
+	性别: <span>{{dataFromParent.sex}}</span>
+</div>
+
+

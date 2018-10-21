@@ -1,0 +1,17 @@
+<h1>父组件</h1>
+<h2>
+	父组件的数据
+	<div>
+		<button nz-button
+		 (click)="changeRef()"
+		 nzType="primary"
+		 nzSize="small"
+		 style="margin-right:5px">改变引用</button>
+		<button nz-button
+		 (click)="changePro()"
+		 nzType="primary"
+		 nzSize="small">改变属性</button>
+	</div>
+</h2>
+<div>{{obj | json}}</div>
+<hr-child [dataFromParent]="obj"></hr-child>
