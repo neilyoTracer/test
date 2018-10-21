@@ -32,6 +32,9 @@ const routes: Routes = [
 	},{
 		path:'watch',
 		loadChildren:'./watch/watch.module#WatchModule'
+	},{
+		path:'chart',
+		loadChildren:'./report/report.module#ReportModule'
 	}
 ];
 

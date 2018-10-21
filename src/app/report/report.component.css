@@ -1,0 +1,8 @@
+.flex { 
+	display: flex;
+	width:600px;
+}
+
+.flex-row { 
+	flex-flow: row wrap;
+}
