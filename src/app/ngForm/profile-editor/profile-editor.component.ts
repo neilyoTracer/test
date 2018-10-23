@@ -18,7 +18,9 @@ export class ProfileEditorComponent implements OnInit {
       state:new FormControl(''),
       zip:new FormControl('')
     })
-  }) */
+	}) */
+	
+	tempArr = ['gaoshengqiao','qingyanggong','nangudi']
 
   profileForm = this.fb.group({ 
     firstName:['',Validators.required],
@@ -29,9 +31,7 @@ export class ProfileEditorComponent implements OnInit {
       state:[''],
       zip:['']
     }),
-    aliases:this.fb.array([
-      this.fb.control('')
-    ])
+    aliases:this.fb.array([])
   });
 
   get aliases() { 
@@ -41,6 +41,21 @@ export class ProfileEditorComponent implements OnInit {
   constructor(private fb:FormBuilder) { }
 
   ngOnInit() {
+		this.tempArr.forEach(itm => { 
+			this.aliases.push(new FormControl(''));
+		})
+		
+		this.profileForm.patchValue({ 
+			firstName: "Nancy", 
+			lastName: "", 
+			address: { 
+				street: "123 Drew Street", 
+				city: "", 
+				state: "", 
+				zip: "" 
+			}, 
+			aliases: [ "gaoshengqiao","daguan","nangudi" ] 
+		})
   }
 
   onSubmit() {
