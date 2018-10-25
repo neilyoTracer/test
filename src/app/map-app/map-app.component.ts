@@ -24,13 +24,16 @@ export class MapAppComponent implements OnInit {
 		enableMapClick:false
 	}
 
-	_map:any = null;
+	private _map:any = null;
+	private _markers:any[] = [];
 	addressOpt:any = { 
 		width:300,
 		height:100,
 		title:'企业信息',
 		enableMessage:true
 	}
+
+	
 
   constructor(
 		private ref:ChangeDetectorRef
@@ -119,6 +122,7 @@ export class MapAppComponent implements OnInit {
 				this._center(+itm.longitude,+itm.latitude)
 			}
 			let marker = this._marker(+itm.longitude,+itm.latitude);
+			
 			let content = `
 				<div>${itm.enterpriseName}</div>
 				<div>地址: ${itm.addressInfo}</div>
@@ -126,7 +130,17 @@ export class MapAppComponent implements OnInit {
 			`
 			this._map.addOverlay(marker);
 			this._addClickHandler(content,marker);
+			this._markers.push(marker);
 		});
+		this.test2();
+	}
+
+	//模拟点击某个企业,在地图定位处显示信息
+	test2() { 
+		let content = `测试`;
+		let infoWindow = new BMap.InfoWindow(content,this.addressOpt);
+		console.log(this._markers[0]);
+		this._markers[0].openInfoWindow(infoWindow);
 	}
 
 
