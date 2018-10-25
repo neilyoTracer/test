@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
+import { mapMock } from './map-mock';
 
 declare const BMap:any;
 declare const BMAP_NORMAL_MAP:any;
@@ -16,12 +17,20 @@ declare const BMAP_NAVIGATION_CONTROL_LARGE:any;
 })
 export class MapAppComponent implements OnInit {
 
+	mockData = mapMock;
+
 	//地图配置参数
 	map_options:any = { 
 		enableMapClick:false
 	}
 
 	_map:any = null;
+	addressOpt:any = { 
+		width:300,
+		height:100,
+		title:'企业信息',
+		enableMessage:true
+	}
 
   constructor(
 		private ref:ChangeDetectorRef
@@ -39,7 +48,7 @@ export class MapAppComponent implements OnInit {
 	 */
 	onReady(map:any) { 
 		this._map = map;
-		map.centerAndZoom(new BMap.Point(104.072224, 30.664599),16);
+		map.centerAndZoom(new BMap.Point(104.072224, 30.664599),11);
 		map.enableScrollWheelZoom(true);
 		
 
@@ -70,17 +79,66 @@ export class MapAppComponent implements OnInit {
 		);
 		map.addControl(geolocationControl);
 
-
 		
+		this.positionTest();
 
 	}
+
 
 	/**
 	 * 设置地图标点
 	 */
-	private _center(rl) { 
-		this._map.setCenter()
+	private _center(lng:number,lat:number) { 
+		this._map.setCenter(new BMap.Point(lng,lat));
+	}
+	
+
+	/**
+	 * 生成marker
+	 */
+	private _marker(lng:number,lat:number) { 
+		return new BMap.Marker(new BMap.Point(lng,lat));
 	}
 
+	private _addClickHandler(content,marker) { 
+		marker.addEventListener("click",(e) => { 
+			this._openInfo(content,e)
+		})
+	}
+
+	private _openInfo(content,e) { 
+		let p = e.target;
+		let point = new BMap.Point(p.getPosition().lng,p.getPosition().lat);
+		let infoWindow = new BMap.InfoWindow(content,this.addressOpt);
+		this._map.openInfoWindow(infoWindow,point);
+	}
+
+	positionTest() { 
+		this.mockData.forEach((itm,idx) => { 
+			if(idx === 0) { 
+				this._center(+itm.longitude,+itm.latitude)
+			}
+			let marker = this._marker(+itm.longitude,+itm.latitude);
+			let content = `
+				<div>${itm.enterpriseName}</div>
+				<div>地址: ${itm.addressInfo}</div>
+				<div>电话: ${itm.contactNumber.trim().slice(0,-1).split(';')[0]}</div>
+			`
+			this._map.addOverlay(marker);
+			this._addClickHandler(content,marker);
+		});
+	}
+
+
+	private destroy() {
+    if (this._map) {
+      this._map.clearOverlays();
+      this._map.clearHotspots();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.destroy();
+  }
 
 }
